@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="1vI14Je1H_raULOelD6lbeOkK4Qi1Zh1PyolospRGi4" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="lLtCxhRXc8" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Node.js,进程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blog of 铭铭GE's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="多进程模型Node.js 如何榨干服务器资源享受多核 CPU？ Node.js 是运行在单线程上的，因此也就表示 Node.js 只能运行在一个 CPU 上 为了利用多核系统, Node.js 官方提供 🍭Cluster 模块 作为解决方案  Cluster 是什么？ 在服务器上同时启动多个进程 每个进程里都跑的是同一份源代码 这些进程可以同时监听一个端口  其中  负责启动其他进程的模块叫做">
+<meta name="keywords" content="Node.js,进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 Node.js 中的多进程模型">
+<meta property="og:url" content="https://christinamcqueen.github.io/2018/04/12/Node/关于-Node-js-中的多进程模型/index.html">
+<meta property="og:site_name" content="Blog of 铭铭GE&#39;s">
+<meta property="og:description" content="多进程模型Node.js 如何榨干服务器资源享受多核 CPU？ Node.js 是运行在单线程上的，因此也就表示 Node.js 只能运行在一个 CPU 上 为了利用多核系统, Node.js 官方提供 🍭Cluster 模块 作为解决方案  Cluster 是什么？ 在服务器上同时启动多个进程 每个进程里都跑的是同一份源代码 这些进程可以同时监听一个端口  其中  负责启动其他进程的模块叫做">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-11T02:04:12.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于 Node.js 中的多进程模型">
+<meta name="twitter:description" content="多进程模型Node.js 如何榨干服务器资源享受多核 CPU？ Node.js 是运行在单线程上的，因此也就表示 Node.js 只能运行在一个 CPU 上 为了利用多核系统, Node.js 官方提供 🍭Cluster 模块 作为解决方案  Cluster 是什么？ 在服务器上同时启动多个进程 每个进程里都跑的是同一份源代码 这些进程可以同时监听一个端口  其中  负责启动其他进程的模块叫做">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://christinamcqueen.github.io/2018/04/12/Node/关于-Node-js-中的多进程模型/"/>
+
+
+
+
+
+  <title>关于 Node.js 中的多进程模型 | Blog of 铭铭GE's</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of 铭铭GE's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2018/04/12/Node/关于-Node-js-中的多进程模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">关于 Node.js 中的多进程模型</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-12T12:56:34+08:00">
+                2018-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="多进程模型"><a href="#多进程模型" class="headerlink" title="多进程模型"></a>多进程模型</h1><h2 id="Node-js-如何榨干服务器资源享受多核-CPU？"><a href="#Node-js-如何榨干服务器资源享受多核-CPU？" class="headerlink" title="Node.js 如何榨干服务器资源享受多核 CPU？"></a>Node.js 如何榨干服务器资源享受多核 CPU？</h2><ul>
+<li>Node.js 是运行在单线程上的，因此也就表示 Node.js 只能运行在一个 CPU 上</li>
+<li>为了利用多核系统, Node.js 官方提供 🍭<a href="https://nodejs.org/api/cluster.html" target="_blank" rel="noopener">Cluster 模块</a> 作为解决方案</li>
+</ul>
+<h2 id="Cluster-是什么？"><a href="#Cluster-是什么？" class="headerlink" title="Cluster 是什么？"></a>Cluster 是什么？</h2><ul>
+<li>在服务器上同时启动多个进程</li>
+<li>每个进程里都跑的是同一份源代码</li>
+<li>这些进程可以同时监听一个端口<!-- （🍭[深层原理戳这里](https://cnodejs.org/topic/56e84480833b7c8a0492e20c)） --></li>
+</ul>
+<p>其中</p>
+<ul>
+<li>负责启动其他进程的模块叫做 Master 进程，Master 只负责启动（<code>child_process.fork()</code> 方法）其他进程，不负责具体工作</li>
+<li>其他被启动的进程称为 Worker 进程，负责接受请求，对外提供服务</li>
+<li>Worker 数量一般由 CPU 核数确定，从而完美利用多核资源</li>
+</ul>
+<a id="more"></a>
+<h2 id="Cluster-模块通过两种方式分发请求："><a href="#Cluster-模块通过两种方式分发请求：" class="headerlink" title="Cluster 模块通过两种方式分发请求："></a>Cluster 模块通过两种方式分发请求：</h2><ol>
+<li>轮询（除 Windows 操作系统外的默认方法）：主进程监听端口，接收新的连接请求，并采用轮询方式分发给 Worker 进程以实现负载均衡</li>
+<li>主进程创建监听套接字，将请求直接转发给相应 Worker</li>
+</ol>
+<p>理论上，第二种方法较好，然而在实践中，操作系统调度程序千差万别，导致负载更趋向于不平衡</p>
+<h2 id="Node-js-不提供路由逻辑，因此需要专门创建一个-application-来管理-Session-或-Login-等信息，以避免过分依赖内存数据"><a href="#Node-js-不提供路由逻辑，因此需要专门创建一个-application-来管理-Session-或-Login-等信息，以避免过分依赖内存数据" class="headerlink" title="Node.js 不提供路由逻辑，因此需要专门创建一个 application 来管理 Session 或 Login 等信息，以避免过分依赖内存数据"></a>Node.js 不提供路由逻辑，因此需要专门创建一个 application 来管理 Session 或 Login 等信息，以避免过分依赖内存数据</h2><ul>
+<li>由于 Worker 都是各自独立的进程，因此他们会在彼此互不影响的情况下，根据程序需要被 kill 或者重新创建</li>
+<li>只要还有 alive 的 Worker，服务器就会继续接收连接请求，如果没有 alive 的 Worker，现有的连接会被丢弃，同时也不再接收新的连接请求</li>
+<li>由于 Node.js 不会自动的管理 Worker 的数量，application 也需要根据自己的需求来管理 Worker 池</li>
+</ul>
+<hr>
+<h1 id="子进程"><a href="#子进程" class="headerlink" title="子进程"></a>子进程</h1><h2 id="父子进程的相互影响"><a href="#父子进程的相互影响" class="headerlink" title="父子进程的相互影响"></a>父子进程的相互影响</h2><ul>
+<li>当一个子进程退出时，并不立刻清空进程表，而是向父进程发送一个信号。父进程需要对此应答，然后系统会完全清除子进程。假设父进程没有应答，或者应答之前子进程退出，子进程会被系统设置为‘僵尸’状态</li>
+<li>当一个父进程退出时，如果有几个子进程仍在运行，这些子进程会变成‘孤儿进程’。‘孤儿进程’会立刻被‘init’超级进程接管，作为其父进程。‘init’进程能够确保这些子进程在退出时不会变为‘僵尸进程’，因为‘init’进程总是应答子进程的退出</li>
+</ul>
+<h2 id="POSIX-是什么？POSIX-的-fork-与-child-process-fork-又何不同"><a href="#POSIX-是什么？POSIX-的-fork-与-child-process-fork-又何不同" class="headerlink" title="POSIX 是什么？POSIX 的 fork() 与 child_process.fork() 又何不同"></a>POSIX 是什么？POSIX 的 <code>fork()</code> 与 <code>child_process.fork()</code> 又何不同</h2><ul>
+<li>POSIX 是线程的 POSIX 标准，该标准定义了创建和操作线程的一套 API</li>
+<li><code>child_process.fork()</code> 不会 clone 当前进程，而 POSIX 的 <code>fork()</code> 会复制父进程的‘内存页’</li>
+</ul>
+<p><code>child_process.fork()</code> 是 <code>child_process.spawn()</code> 创建子进程的一种特殊方式，两者都返回新创建的子进程，但是通过 <code>child_process.fork()</code> 创建的子进程会默认开启进程间通信</p>
+<h2 id="POSIX-的进程间通信（IPC）"><a href="#POSIX-的进程间通信（IPC）" class="headerlink" title="POSIX 的进程间通信（IPC）"></a>POSIX 的进程间通信（IPC）</h2><ul>
+<li><code>pipe()</code>：只能在父-子进程间使用；单向通信；<strong>传输字节流，读写顺序一致；不会丢失数据</strong></li>
+<li><code>mkfifo()</code>：命名管道，操作方式与操作文件类似</li>
+<li><code>socket()</code>：与管道相似；进程间可以不想管；双向通信</li>
+<li><code>mmap()</code> 创建内存映射：映射同一个文件同一个区域，共享相同的‘物理内存页’；通过 <code>fork()</code> 创建的子进程，会复制父进程的‘内存页’，可以在这些内存页中映射共享内存</li>
+<li>消息队列</li>
+<li>信号量</li>
+<li>共享内存</li>
+</ul>
+<h2 id="Node-js-创建子进程的几种方式"><a href="#Node-js-创建子进程的几种方式" class="headerlink" title="Node.js 创建子进程的几种方式"></a>Node.js 创建子进程的几种方式</h2><ul>
+<li>spawn()</li>
+<li>exec()</li>
+<li>execFile()</li>
+<li>fork()</li>
+</ul>
+<h1 id="Node-js-的进程守护"><a href="#Node-js-的进程守护" class="headerlink" title="Node.js 的进程守护"></a>Node.js 的进程守护</h1><ul>
+<li>鲁棒性（即健壮性）是 Node.js 所面临的一大问题，由于 Node.js 是单线程的，所以它最大的问题是不够稳定，不适合处理复杂业务</li>
+<li><p>捕获 Node.js 的异常可以有以下方式：</p>
+<blockquote>
+<ol>
+<li><code>process.on(&#39;uncaughtException&#39;, callback())</code></li>
+<li><code>try/catch</code></li>
+</ol>
+</blockquote>
+</li>
+<li><p>进程守护可以采用插件（supervisor、forever、pm2 等）</p>
+</li>
+</ul>
+<hr>
+<p>ps：推荐使用进程管理器 pm2，带有负载均衡功能，配置简单，启动方便，秒速重载（小程序、钉钉企业微应用等需要签名验证功能请开启单核）</p>
+<p>pps：一些常用的负载均衡算法：</p>
+<ul>
+<li>随机算法</li>
+<li>轮询及加权轮询</li>
+<li>最小连接及加权最小连接</li>
+<li>哈希算法</li>
+<li>IP 地址散列</li>
+<li>URL 散列</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/进程/" rel="tag"># 进程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/30/BFC/BFC-在布局中的应用/" rel="next" title="BFC 在布局中的应用">
+                <i class="fa fa-chevron-left"></i> BFC 在布局中的应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/16/Node/Javascript-异步编程/" rel="prev" title="Javascript 异步编程">
+                Javascript 异步编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="铭铭GE" />
+          <p class="site-author-name" itemprop="name">铭铭GE</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChristinaMcQueen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2673389771?refer_flag=1001030102_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多进程模型"><span class="nav-number">1.</span> <span class="nav-text">多进程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-如何榨干服务器资源享受多核-CPU？"><span class="nav-number">1.1.</span> <span class="nav-text">Node.js 如何榨干服务器资源享受多核 CPU？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cluster-是什么？"><span class="nav-number">1.2.</span> <span class="nav-text">Cluster 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cluster-模块通过两种方式分发请求："><span class="nav-number">1.3.</span> <span class="nav-text">Cluster 模块通过两种方式分发请求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-不提供路由逻辑，因此需要专门创建一个-application-来管理-Session-或-Login-等信息，以避免过分依赖内存数据"><span class="nav-number">1.4.</span> <span class="nav-text">Node.js 不提供路由逻辑，因此需要专门创建一个 application 来管理 Session 或 Login 等信息，以避免过分依赖内存数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子进程"><span class="nav-number">2.</span> <span class="nav-text">子进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#父子进程的相互影响"><span class="nav-number">2.1.</span> <span class="nav-text">父子进程的相互影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POSIX-是什么？POSIX-的-fork-与-child-process-fork-又何不同"><span class="nav-number">2.2.</span> <span class="nav-text">POSIX 是什么？POSIX 的 fork() 与 child_process.fork() 又何不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POSIX-的进程间通信（IPC）"><span class="nav-number">2.3.</span> <span class="nav-text">POSIX 的进程间通信（IPC）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-创建子进程的几种方式"><span class="nav-number">2.4.</span> <span class="nav-text">Node.js 创建子进程的几种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-js-的进程守护"><span class="nav-number">3.</span> <span class="nav-text">Node.js 的进程守护</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">铭铭GE</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+<!-- 访客统计 -->
+<div>
+  <!-- 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次,
+  访客数 <span id="busuanzi_value_site_uv"></span> 人次, -->
+  本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <!--a href="https://github.com/ChristinaMcQueen"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a-->
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

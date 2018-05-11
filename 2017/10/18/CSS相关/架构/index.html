@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="1vI14Je1H_raULOelD6lbeOkK4Qi1Zh1PyolospRGi4" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="lLtCxhRXc8" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blog of 铭铭GE's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="良好的 CSS 架构目标  可预测性：可预见性的 CSS 意味着你的规则行为正如你所想，当你添加或更新一条规则，他不应该影响你网站上不想要受影响的部分。对于一个小型网站很少的修改，并不是很重要。但是对于一个有着几十或几百个页面的大型网站，可预见性的 CSS 就是一种必要。 可重用：CSS 规范应该是足够抽象的和耦合的，这样你可以根据现有代码部分很快创建出新的组件，而不需要重新编写你已经处理过的样式">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 架构">
+<meta property="og:url" content="https://christinamcqueen.github.io/2017/10/18/CSS相关/架构/index.html">
+<meta property="og:site_name" content="Blog of 铭铭GE&#39;s">
+<meta property="og:description" content="良好的 CSS 架构目标  可预测性：可预见性的 CSS 意味着你的规则行为正如你所想，当你添加或更新一条规则，他不应该影响你网站上不想要受影响的部分。对于一个小型网站很少的修改，并不是很重要。但是对于一个有着几十或几百个页面的大型网站，可预见性的 CSS 就是一种必要。 可重用：CSS 规范应该是足够抽象的和耦合的，这样你可以根据现有代码部分很快创建出新的组件，而不需要重新编写你已经处理过的样式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-11T02:04:12.266Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 架构">
+<meta name="twitter:description" content="良好的 CSS 架构目标  可预测性：可预见性的 CSS 意味着你的规则行为正如你所想，当你添加或更新一条规则，他不应该影响你网站上不想要受影响的部分。对于一个小型网站很少的修改，并不是很重要。但是对于一个有着几十或几百个页面的大型网站，可预见性的 CSS 就是一种必要。 可重用：CSS 规范应该是足够抽象的和耦合的，这样你可以根据现有代码部分很快创建出新的组件，而不需要重新编写你已经处理过的样式">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://christinamcqueen.github.io/2017/10/18/CSS相关/架构/"/>
+
+
+
+
+
+  <title>CSS 架构 | Blog of 铭铭GE's</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of 铭铭GE's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/10/18/CSS相关/架构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CSS 架构</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T10:22:40+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>良好的 CSS 架构目标</strong></p>
+<ol>
+<li>可预测性：可预见性的 CSS 意味着你的规则行为正如你所想，当你添加或更新一条规则，他不应该影响你网站上不想要受影响的部分。对于一个小型网站很少的修改，并不是很重要。但是对于一个有着几十或几百个页面的大型网站，可预见性的 CSS 就是一种必要。</li>
+<li>可重用：CSS 规范应该是足够抽象的和耦合的，这样你可以根据现有代码部分很快创建出新的组件，而不需要重新编写你已经处理过的样式和问题。</li>
+<li>可维护：当你的网站需要添加、更新或重新安排一些新的组件和特性，这样做不应该重构现有的 CSS。给页面添加 X 组件不应该破坏已经存在的组件 Y。</li>
+<li>可扩展：随着你的网站的规模和复杂程度的增长，它往往需要更多的开发人员来维护。可扩展的 CSS 意味着可以轻松的由有一个人或一个大型的技术团队管理你的网站。他也意味着你的网站的 CSS 架构容易掌握不需要很陡的学习曲线，仅仅因为你是如今唯一接触 CSS 的开发人员，但是并不意味着永远是这种情况。</li>
+</ol>
+<a id="more"></a>
+<hr>
+<p><strong>CSS 分类</strong></p>
+<ol>
+<li>基本样式（Base）： 网站的全局默认样式</li>
+<li>对象（Object）：只关注解构和布局，不被允许修饰类的样式</li>
+<li>组件（Components）：分离的、自成一体的 UI 零件</li>
+<li>状态（Status）：隐藏／显示，展开／收起</li>
+<li>主题（Themes）：只改变一个组件，使用唯一的颜色、字体等</li>
+<li>工具集（Utilities）：应用一个特殊样式规则改变间隙、增加字体大小、居中文本、添加一个浮动清除、隐藏等，对现有组件进行微调</li>
+<li>JavaScript Hook：JavaScript 与 CSS 解耦</li>
+</ol>
+<hr>
+<p><strong>CSS 预处理器</strong><br>预处理器作为工具，可以实现模块化编写 CSS<br>目前流行的预处理器有 Less，Sass，Stylus<br>Less 没有循环，但可以用递归实现，而 Sass 和 Stylus 有真循环<br>无论是工作还是自己写项目，都要搭建一个项目环境，也就是安装一系列的 npm 包。相比刀耕火种的开发方式，使用工具开发的前期准备过程稍显麻烦，然而一旦环境建好，后期的开发将会游刃有余。<br>编写框架大致会用到的 npm 如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span><span class="bullet">-autoprefixer</span></span><br><span class="line"><span class="bullet">-</span><span class="bullet">-node-sass</span></span><br><span class="line"><span class="bullet">-</span><span class="bullet">-npm-run-all</span></span><br><span class="line"><span class="bullet">-</span><span class="bullet">-rimraf</span></span><br><span class="line"><span class="bullet">-</span><span class="bullet">-onchange</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>前端框架对比</strong><br>以 Bootstrap、Semantic、UIkit 为主<br>选择轻量级框架反倒不如自己实现一个框架。因为大多轻量级框架就像是工作总结，是根据自己的业务需求实现的。所以大多不具有通用性。</p>
+<p>大多数的轻量级框架只是 CSS 框架，不涉及 JS 部分，主要用于网页的布局。</p>
+<p>模块划分：编写框架的第一步就是要确定框架应该包含哪些模块。因为是轻量级框架，所以模块肯定没有重量级框架那么全面，只有核心的一些组件。通过比较一些轻量级框架以及工作总结，大致常用的模块包括栅格、媒体、按钮、排版、表单、表格、面板以及辅助工具。<br>在常用的这几个组件中，需要重点关注的是栅格、表单及面板，媒体组件也很重要，但是自由发挥的空间不大，我直接用了 Bootstrap 的媒体组件。</p>
+<p>命名策略：首先是类命名的层次与结构。类命名一直是我比较纠结的地方，刚开始工作的时候为了起一个见名知意又简洁的类名总是抓耳挠腮。我在编写框架时尽量避免与 Bootstrap 的类名重叠，但也不能完全避免。对比其他框架会发现，这种情况不可避免的会出现，毕竟类名会有一定的规律性以及层次性。在这一点上我比较喜欢 Bootstrap 的风格。</p>
+<hr>
+<p><strong>CSS 样式书写规范</strong></p>
+<p>1.&nbsp;规则声明块</p>
+<blockquote>
+<p>当规则声明块中有多个样式声明时，每条样式独占一行。<br>在规则声明块的左大括号 { 前加一个空格。<br>在样式属性的冒号 : 后面加上一个空格，前面不加空格。<br>在每条样式后面都以分号 ; 结尾。<br>规则声明块的右大括号 } 独占一行。<br>每个规则声明间用空行分隔。<br>所有最外层引号使用单引号 ‘ 。<br>当一个属性有多个属性值时，以逗号 , 分隔属性值，每个逗号后添加一个空格，当单个属性值过长时，每个属性值独占一行。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.g-footer</span>,</span><br><span class="line"><span class="selector-class">.g-header</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.g-content</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>:</span><br><span class="line">        <span class="built_in">linear-gradient</span>(135deg, deeppink 25%, transparent 25%) -<span class="number">50px</span> <span class="number">0</span>,</span><br><span class="line">        <span class="built_in">linear-gradient</span>(225deg, deeppink 25%, transparent 25%) -<span class="number">50px</span> <span class="number">0</span>,</span><br><span class="line">        <span class="built_in">linear-gradient</span>(315deg, deeppink 25%, transparent 25%),</span><br><span class="line">        <span class="built_in">linear-gradient</span>(45deg, deeppink 25%, transparent 25%);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.g-content</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.&nbsp;样式属性顺序<br>单个样式规则下的属性在书写时，应按功能进行分组，并以 Positioning Model &gt; Box Model &gt; Typographic &gt; Visual 的顺序书写，提高代码的可读性。</p>
+<blockquote>
+<p>如果包含 content 属性，应放在最前面；<br>Positioning Model 布局方式、位置，相关属性包括：position / top / right / bottom / left / z-index / display / float / …<br>Box Model 盒模型，相关属性包括：width / height / padding / margin / border / overflow / …<br>Typographic 文本排版，相关属性包括：font / line-height / text-align / word-wrap / …<br>Visual 视觉外观，相关属性包括：color / background / list-style / transform / animation / transition / …</p>
+</blockquote>
+<p>Positioning 处在第一位，因为他可以使一个元素脱离正常文本流，并且覆盖盒模型相关的样式。盒模型紧跟其后，因为他决定了一个组件的大小和位置。其他属性只在组件内部起作用或者不会对前面两种情况的结果产生影响，所以他们排在后面。</p>
+<p>3.&nbsp;SASS 使用建议<br>1) 使用 SASS 、 LESS 等预处理器时，建议嵌套层级不超过 3 层。<br>2) &nbsp;组件/公用类的使用方法</p>
+<p>组件/公用类使用 %placeholders 定义，使用 @extend 引用。如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%<span class="selector-tag">clearfix</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: auto;</span><br><span class="line">    <span class="attribute">zoom</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.g-header</span> &#123;</span><br><span class="line">    @extend %clearfix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3) &nbsp;组件类的思考<br>使用 SASS ，经常会预先定义好一些常用公用组件类，譬如清除浮动，水平垂直居中，文字 ellipsis。又或者多个元素具有同样的样式，我们希望能够少写这部分代码，公共部分抽离出来只写一次，达到复用。</p>
+<p>但是复用的方式在 SASS 中有多种，那么是使用单独使用一个类定义，给需要的标签添加，还是使用 @include 或者 @extend在定义的类中引入一个 @mixin，或者一个 @function 呢？</p>
+<p>基于让 CSS 更简洁以及代码的复用考虑，采用上面的使用 %placeholders 定义，使用 @extend 引用的方案。</p>
+<blockquote>
+<p>%placeholders，只是一个占位符，只要不通过 @extend 调用，编译后不会产生任何代码量<br>使用 @extend 引用，则是因为每次调用相同的 %placeholders 时，编译出来相同的 CSS 样式会进行合并（反之，如果使用 @include 调用定义好的 @mixin，编译出来相同的 CSS 样式不会进行合并）<br>这里的组件类特指那些不会动态改变的 CSS 样式，注意与那些可以通过传参生成不同数值样式的 @mixin 方法进行区分</p>
+</blockquote>
+<p>4) 尽量避免使用标签名<br>基于 CSS 选择器的解析规则（从右向左），建议避免使用通用标签名作为选择器的一环可以提高 CSS 匹配性能。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/08/CSS相关/基础/" rel="next" title="CSS 基础">
+                <i class="fa fa-chevron-left"></i> CSS 基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/20/Node/Prometheus-Node-js性能监测/" rel="prev" title="Prometheus-Node.js性能监测">
+                Prometheus-Node.js性能监测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="铭铭GE" />
+          <p class="site-author-name" itemprop="name">铭铭GE</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChristinaMcQueen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2673389771?refer_flag=1001030102_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">铭铭GE</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+<!-- 访客统计 -->
+<div>
+  <!-- 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次,
+  访客数 <span id="busuanzi_value_site_uv"></span> 人次, -->
+  本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <!--a href="https://github.com/ChristinaMcQueen"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a-->
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

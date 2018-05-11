@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="1vI14Je1H_raULOelD6lbeOkK4Qi1Zh1PyolospRGi4" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="lLtCxhRXc8" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTML5," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blog of 铭铭GE's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="组织内容    问题 使用元素     表示段落 p   将全局属性应用到一片内容上，但不表示任何其他内容分组 div   保留 HMTL 文档中的布局 pre   表示引自他处的内容 blockquote   表示因段落级别的主题转变 hr   生成有序列表 ol、li   生成无序列表 ul、li   生成项目编号不连续的有序列表 ol、li，并设置 li 元素的 value 属性   生成术">
+<meta name="keywords" content="HTML5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5-页面元素">
+<meta property="og:url" content="https://christinamcqueen.github.io/2017/10/08/HTML5/页面元素/index.html">
+<meta property="og:site_name" content="Blog of 铭铭GE&#39;s">
+<meta property="og:description" content="组织内容    问题 使用元素     表示段落 p   将全局属性应用到一片内容上，但不表示任何其他内容分组 div   保留 HMTL 文档中的布局 pre   表示引自他处的内容 blockquote   表示因段落级别的主题转变 hr   生成有序列表 ol、li   生成无序列表 ul、li   生成项目编号不连续的有序列表 ol、li，并设置 li 元素的 value 属性   生成术">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-11T02:04:12.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5-页面元素">
+<meta name="twitter:description" content="组织内容    问题 使用元素     表示段落 p   将全局属性应用到一片内容上，但不表示任何其他内容分组 div   保留 HMTL 文档中的布局 pre   表示引自他处的内容 blockquote   表示因段落级别的主题转变 hr   生成有序列表 ol、li   生成无序列表 ul、li   生成项目编号不连续的有序列表 ol、li，并设置 li 元素的 value 属性   生成术">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://christinamcqueen.github.io/2017/10/08/HTML5/页面元素/"/>
+
+
+
+
+
+  <title>HTML5-页面元素 | Blog of 铭铭GE's</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of 铭铭GE's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/10/08/HTML5/页面元素/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">HTML5-页面元素</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-08T17:07:30+08:00">
+                2017-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>组织内容</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用元素</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">表示段落</td>
+<td style="text-align:left">p</td>
+</tr>
+<tr>
+<td style="text-align:center">将全局属性应用到一片内容上，但不表示任何其他内容分组</td>
+<td style="text-align:left">div</td>
+</tr>
+<tr>
+<td style="text-align:center">保留 HMTL 文档中的布局</td>
+<td style="text-align:left">pre</td>
+</tr>
+<tr>
+<td style="text-align:center">表示引自他处的内容</td>
+<td style="text-align:left">blockquote</td>
+</tr>
+<tr>
+<td style="text-align:center">表示因段落级别的主题转变</td>
+<td style="text-align:left">hr</td>
+</tr>
+<tr>
+<td style="text-align:center">生成有序列表</td>
+<td style="text-align:left">ol、li</td>
+</tr>
+<tr>
+<td style="text-align:center">生成无序列表</td>
+<td style="text-align:left">ul、li</td>
+</tr>
+<tr>
+<td style="text-align:center">生成项目编号不连续的有序列表</td>
+<td style="text-align:left">ol、li，并设置 li 元素的 value 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">生成术语及其定义的列表</td>
+<td style="text-align:left">dl、dt、dd</td>
+</tr>
+<tr>
+<td style="text-align:center">生成带自定义项目编号的列表</td>
+<td style="text-align:left">ul，配合使用 CSS 的 <code>:before</code> 选择器和 <code>counter特性</code></td>
+</tr>
+<tr>
+<td style="text-align:center">表示插图</td>
+<td style="text-align:left">figure、figucaption</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<hr>
+<p><strong>文档分节</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用元素</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">表示标题</td>
+<td style="text-align:left">h1~h3</td>
+</tr>
+<tr>
+<td style="text-align:center">表示一组标题，其中只有第一个可出现在文档大纲中</td>
+<td style="text-align:left">hgroup</td>
+</tr>
+<tr>
+<td style="text-align:center">表示一个重要的主题或概念</td>
+<td style="text-align:left">section</td>
+</tr>
+<tr>
+<td style="text-align:center">表示首部和尾部</td>
+<td style="text-align:left">header、footer</td>
+</tr>
+<tr>
+<td style="text-align:center">表示导航元素集合</td>
+<td style="text-align:left">nav</td>
+</tr>
+<tr>
+<td style="text-align:center">表示可以独立发布的重要主题或概念</td>
+<td style="text-align:left">article</td>
+</tr>
+<tr>
+<td style="text-align:center">表示周边内容的一些沾边话题</td>
+<td style="text-align:left">aside</td>
+</tr>
+<tr>
+<td style="text-align:center">表示文档或文章的联系信息</td>
+<td style="text-align:left">address</td>
+</tr>
+<tr>
+<td style="text-align:center">生成一个区域，用户可将其展开以了解更多细节</td>
+<td style="text-align:left">details、sumary</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>表格元素</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用元素</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">生成基本的表格</td>
+<td style="text-align:left">table、tr、td</td>
+</tr>
+<tr>
+<td style="text-align:center">为表格添加表头单元格</td>
+<td style="text-align:left">th</td>
+</tr>
+<tr>
+<td style="text-align:center">区分行表头和列表头</td>
+<td style="text-align:left">thead、tbody</td>
+</tr>
+<tr>
+<td style="text-align:center">为表格添加表脚</td>
+<td style="text-align:left">tfoot</td>
+</tr>
+<tr>
+<td style="text-align:center">生成不规则表格单元格</td>
+<td style="text-align:left">th、td 定义的 colspan、rowspan</td>
+</tr>
+<tr>
+<td style="text-align:center">将单元格与表头相关联一满足残障辅助技术的需要</td>
+<td style="text-align:left">th、td 定义的 headers 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">为表格添加标题</td>
+<td style="text-align:left">caption</td>
+</tr>
+<tr>
+<td style="text-align:center">为表格按列处理</td>
+<td style="text-align:left">colgroup、col</td>
+</tr>
+<tr>
+<td style="text-align:center">表示表格不是用来控制页面布局的</td>
+<td style="text-align:left">table 元素定义的 border 属性</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>表单</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用元素</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">制作基本的表单</td>
+<td style="text-align:left">form、input、button</td>
+</tr>
+<tr>
+<td style="text-align:center">指定表单数据发送到的 URL</td>
+<td style="text-align:left">form 元素的 action 属性（或者 button 元素的 formaction 属性）</td>
+</tr>
+<tr>
+<td style="text-align:center">指定传送给服务器的表单数据采用的编码方式</td>
+<td style="text-align:left">form 元素的 entype 属性（或者 button 元素的 formenctype 属性）</td>
+</tr>
+<tr>
+<td style="text-align:center">控制自动完成功能</td>
+<td style="text-align:left">form 元素或 input 元素的 autocomplete 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">为服务器的反馈信息指定显示位置</td>
+<td style="text-align:left">form 元素的 target 属性（或者 button 元素的 formtarget 属性）</td>
+</tr>
+<tr>
+<td style="text-align:center">指定表单的名字</td>
+<td style="text-align:left">form 元素的 name 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">为 input 元素添加数名标签</td>
+<td style="text-align:left">label</td>
+</tr>
+<tr>
+<td style="text-align:center">载入表单后自动聚焦于某个 input 元素</td>
+<td style="text-align:left">input 元素的 autofocus 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">禁用单个 input 元素</td>
+<td style="text-align:left">input 元素的 disabled 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">对 input 元素编组</td>
+<td style="text-align:left">fieldset</td>
+</tr>
+<tr>
+<td style="text-align:center">为 fieldset 元素添加说明标签</td>
+<td style="text-align:left">legend</td>
+</tr>
+<tr>
+<td style="text-align:center">禁用一组 input 元素</td>
+<td style="text-align:left">fieldset 元素的 disabled 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">用 button 元素提交表单</td>
+<td style="text-align:left">button 元素的 type 属性设置为 submit</td>
+</tr>
+<tr>
+<td style="text-align:center">用 button 元素重置表单</td>
+<td style="text-align:left">button 元素的 type 属性设置为 reset</td>
+</tr>
+<tr>
+<td style="text-align:center">用 button 元素表示一般的按钮控件</td>
+<td style="text-align:left">button 元素的 type 属性设置为 button</td>
+</tr>
+<tr>
+<td style="text-align:center">将表单相关的元素与并非其祖先元素的 form 元素挂钩</td>
+<td style="text-align:left">使用 form 属性</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>定制 input 元素</strong></p>
+<div class="wrap"><label class="input-wrap" for"password"="" style="width: 100%; text-align: left;"><legend>Password: </legend><input type="password" placeholder="Min 6 characters" id="password" name="password"></label></div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>"<span class="attr">password</span>"&gt;</span></span><br><span class="line">        password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"Min 6 characters"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">lebel</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用属性</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">设置 input 元素的大小和容量</td>
+<td style="text-align:left">size、maxlength</td>
+</tr>
+<tr>
+<td style="text-align:center">为 input 元素设置初始值或关于所需数据类型的提示</td>
+<td style="text-align:left">value、placeholder</td>
+</tr>
+<tr>
+<td style="text-align:center">提供一批建议值供用户选择</td>
+<td style="text-align:left">list、datalist</td>
+</tr>
+<tr>
+<td style="text-align:center">生成只读或被禁用的 input 元素</td>
+<td style="text-align:left">readonly、disabled</td>
+</tr>
+<tr>
+<td style="text-align:center">隐藏用户输入的字符</td>
+<td style="text-align:left">password 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">用 input 元素生成按钮</td>
+<td style="text-align:left">submit、reset 或 button 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">将输入内容限制为数值</td>
+<td style="text-align:left">number 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">将输入内容限制在一个数值范围</td>
+<td style="text-align:left">range 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">限制用户只能选择是或否</td>
+<td style="text-align:left">checkbox 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">限制用户在有限几个选项中进行选择</td>
+<td style="text-align:left">radio 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">将输入内容限制为特定格式的字符串</td>
+<td style="text-align:left">email、tel 或 url 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">将输入内容限制为时间或日期</td>
+<td style="text-align:left">datetime、datetime-local、date、month、time 或 week 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">让用户选择一种颜色</td>
+<td style="text-align:left">color 型 input 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">让用户输入一个搜索词</td>
+<td style="text-align:left">search 型 input 元素</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>其他表单元素</strong></p>
+<form onsubmit="return false" oninput="res.value=quant.valueAsNumber*price.valueAsNumber"><fieldset><legend>Price Calculator</legend><input type="number" placeholder="Quanrity" id="quant" name="quant"> * <input type="number" placeholder="Price" id="price" name="price"> = <output for="quan name" name="res"></output></fieldset></form>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">onsubmit</span>=<span class="string">"return false"</span> <span class="attr">oninput</span>=<span class="string">"res.value=quant.valueAsNumber * price.valueAsNumber"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>Price Calculator<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">placeholder</span>=<span class="string">"Quanrity"</span> <span class="attr">id</span>=<span class="string">"quant"</span> <span class="attr">name</span>=<span class="string">"quant"</span>/&gt;</span> *</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">placeholder</span>=<span class="string">"Price"</span> <span class="attr">id</span>=<span class="string">"price"</span> <span class="attr">name</span>=<span class="string">"price"</span>/&gt;</span> =</span><br><span class="line">        <span class="tag">&lt;<span class="name">output</span> <span class="attr">for</span>=<span class="string">"quan name"</span> <span class="attr">name</span>=<span class="string">"res"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fidldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用元素</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">生成一系列选项供用户选择</td>
+<td style="text-align:left">select</td>
+</tr>
+<tr>
+<td style="text-align:center">对 select 元素中的选项编组</td>
+<td style="text-align:left">optgroup</td>
+</tr>
+<tr>
+<td style="text-align:center">获取用户输入的多行文字</td>
+<td style="text-align:left">textarea</td>
+</tr>
+<tr>
+<td style="text-align:center">表示计算结果</td>
+<td style="text-align:left">output</td>
+</tr>
+<tr>
+<td style="text-align:center">生成公开／私有密钥对</td>
+<td style="text-align:left">keygen</td>
+</tr>
+<tr>
+<td style="text-align:center">确保用户为表单元素提供了一个值</td>
+<td style="text-align:left">required 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">确保输入值处于一个范围内</td>
+<td style="text-align:left">min、max 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">确保输入值匹配一个正则表达式</td>
+<td style="text-align:left">pattern 属性</td>
+</tr>
+<tr>
+<td style="text-align:center">禁用输入验证</td>
+<td style="text-align:left">novalidate 或 formnovalidate 属性</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>嵌入内容</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>问题</strong></th>
+<th style="text-align:left"><strong>使用元素</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">在 HTML 文档里潜入图像</td>
+<td style="text-align:left">img 或 object</td>
+</tr>
+<tr>
+<td style="text-align:center">创建基于图像的超链接</td>
+<td style="text-align:left">在 a 元素李使用 img 元素</td>
+</tr>
+<tr>
+<td style="text-align:center">创建客户端分区响应图</td>
+<td style="text-align:left">将 img 元素或 object 元素与map 和 area 元素结合使用</td>
+</tr>
+<tr>
+<td style="text-align:center">嵌入另一张 HTML 文档</td>
+<td style="text-align:left">iframe</td>
+</tr>
+<tr>
+<td style="text-align:center">通过插件嵌入内容</td>
+<td style="text-align:left">embed 或 object</td>
+</tr>
+<tr>
+<td style="text-align:center">创建浏览上下文</td>
+<td style="text-align:left">object，用它的name属性定义浏览上下文的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">不通过插件嵌入音频和视频</td>
+<td style="text-align:left">audio、video、source、track</td>
+</tr>
+<tr>
+<td style="text-align:center">在 HTML 文档里嵌入图形</td>
+<td style="text-align:left">canvas</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML5/" rel="tag"># HTML5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/05/HTML5/元数据元素/" rel="next" title="元数据元素">
+                <i class="fa fa-chevron-left"></i> 元数据元素
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/08/CSS相关/基础/" rel="prev" title="CSS 基础">
+                CSS 基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="铭铭GE" />
+          <p class="site-author-name" itemprop="name">铭铭GE</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChristinaMcQueen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2673389771?refer_flag=1001030102_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">铭铭GE</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+<!-- 访客统计 -->
+<div>
+  <!-- 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次,
+  访客数 <span id="busuanzi_value_site_uv"></span> 人次, -->
+  本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <!--a href="https://github.com/ChristinaMcQueen"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a-->
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

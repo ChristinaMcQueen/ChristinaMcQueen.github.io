@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="1vI14Je1H_raULOelD6lbeOkK4Qi1Zh1PyolospRGi4" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="lLtCxhRXc8" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS3,flex,布局," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blog of 铭铭GE's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="当初开始学习使用 Flexbox 就是从🍭FLEXBOX FROGGY这个小游戏开始的另外，还有关于 Grid 布局的孪生兄弟游戏：🍭GRID GARDEN CSS 中的布局模式CSS 布局可以由 table、float、position、display 等方式实现，但是这些布局在使用中往往也会伴随一些副作用，想要实现一个比较「复杂」的布局也往往要花费比较大的精力  CSS2.1 中定义了四种">
+<meta name="keywords" content="CSS3,flex,布局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 Flexbox 的若干问题">
+<meta property="og:url" content="https://christinamcqueen.github.io/2018/04/29/CSS相关/关于-Flexbox-的若干问题/index.html">
+<meta property="og:site_name" content="Blog of 铭铭GE&#39;s">
+<meta property="og:description" content="当初开始学习使用 Flexbox 就是从🍭FLEXBOX FROGGY这个小游戏开始的另外，还有关于 Grid 布局的孪生兄弟游戏：🍭GRID GARDEN CSS 中的布局模式CSS 布局可以由 table、float、position、display 等方式实现，但是这些布局在使用中往往也会伴随一些副作用，想要实现一个比较「复杂」的布局也往往要花费比较大的精力  CSS2.1 中定义了四种">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://christinamcqueen.github.io/img/flexbox-model.webp">
+<meta property="og:updated_time" content="2018-05-11T02:50:10.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于 Flexbox 的若干问题">
+<meta name="twitter:description" content="当初开始学习使用 Flexbox 就是从🍭FLEXBOX FROGGY这个小游戏开始的另外，还有关于 Grid 布局的孪生兄弟游戏：🍭GRID GARDEN CSS 中的布局模式CSS 布局可以由 table、float、position、display 等方式实现，但是这些布局在使用中往往也会伴随一些副作用，想要实现一个比较「复杂」的布局也往往要花费比较大的精力  CSS2.1 中定义了四种">
+<meta name="twitter:image" content="https://christinamcqueen.github.io/img/flexbox-model.webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://christinamcqueen.github.io/2018/04/29/CSS相关/关于-Flexbox-的若干问题/"/>
+
+
+
+
+
+  <title>关于 Flexbox 的若干问题 | Blog of 铭铭GE's</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of 铭铭GE's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2018/04/29/CSS相关/关于-Flexbox-的若干问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">关于 Flexbox 的若干问题</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T11:59:34+08:00">
+                2018-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当初开始学习使用 Flexbox 就是从🍭<a href="http://flexboxfroggy.com/#zh-cn" target="_blank" rel="noopener">FLEXBOX FROGGY</a>这个小游戏开始的<br>另外，还有关于 Grid 布局的孪生兄弟游戏：🍭<a href="http://cssgridgarden.com/" target="_blank" rel="noopener">GRID GARDEN</a></p>
+<h1 id="CSS-中的布局模式"><a href="#CSS-中的布局模式" class="headerlink" title="CSS 中的布局模式"></a>CSS 中的布局模式</h1><p>CSS 布局可以由 <code>table</code>、<code>float</code>、<code>position</code>、<code>display</code> 等方式实现，但是这些布局在使用中往往也会伴随一些副作用，想要实现一个比较「复杂」的布局也往往要花费比较大的精力</p>
+<blockquote>
+<p>CSS2.1 中定义了四种布局模式，由一个盒与其兄弟、祖先盒的关系决定其尺寸与位置的算法</p>
+</blockquote>
+<ul>
+<li>块布局： 呈现文档的布局模式</li>
+<li>行内布局： 呈现文本的布局模式</li>
+<li>表格布局： 用表格呈现 2D 数据的布局模式</li>
+<li>定位布局： 能够直接地定位元素的布局模式，定位元素基本与其他元素没有任何关系</li>
+</ul>
+<p>CSS3 引入的 Flexbox （伸缩）布局模式，主要思想是让容器由有能力让其子项目能够改变其宽度、高度（甚至顺序），以最佳方式填充可用空间</p>
+<a id="more"></a>
+<p>Flexbox 布局方向不可预知，不像常规的布局（块：从上到下，内联：从左到右），常规布局更适合页面布局，而对于大型或复杂的布局就缺乏灵活性</p>
+<h1 id="新版本-Flexbox-的基本使用"><a href="#新版本-Flexbox-的基本使用" class="headerlink" title="新版本 Flexbox 的基本使用"></a>新版本 Flexbox 的基本使用</h1><p>Flexbox 具有多个版本，这里的新版本指的是 W3C 在 2014 年 9 月为 Flexbox 推出的最新版本语法<br>Flexbox 相关术语可以参考 W3C 的🍭<a href="https://www.w3.org/TR/css-flexbox/#box-model" target="_blank" rel="noopener">Flexbox 模型</a></p>
+<p>浏览器支持度：</p>
+<p>Browser|Version|Addition</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Browser</strong></th>
+<th style="text-align:center"><strong>Version</strong></th>
+<th style="text-align:center"><strong>Addition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Chrome</td>
+<td style="text-align:center">29+</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Firefox</td>
+<td style="text-align:center">28+</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Internet Explorer</td>
+<td style="text-align:center">11+</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Opera</td>
+<td style="text-align:center">17+</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Safari</td>
+<td style="text-align:center">6.1+</td>
+<td style="text-align:center">(prefixed with <code>-webkit-</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center">Android</td>
+<td style="text-align:center">4.4+</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">iOS</td>
+<td style="text-align:center">7.1+</td>
+<td style="text-align:center">(prefixed with <code>-webkit-</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>兼容旧版本 Flexbox 可以参考🍭<a href="https://css-tricks.com/using-flexbox/" target="_blank" rel="noopener">Using Flexbox</a></p>
+<h2 id="Flexbox-容器"><a href="#Flexbox-容器" class="headerlink" title="Flexbox 容器"></a>Flexbox 容器</h2><p><img src="/img/flexbox-model.webp" alt="flex container"></p>
+<p><strong>设置 Flexbox dispaly 属性</strong>：<code>display: flex | inline-flex</code><br>⚠️<strong>注意：</strong>设置 Flexbox 布局后，<code>float</code>、<code>clear</code> 和 <code>vertical-align</code> 在伸缩项目上失效</p>
+<h1 id="Flexbox-相关属性"><a href="#Flexbox-相关属性" class="headerlink" title="Flexbox 相关属性"></a>Flexbox 相关属性</h1><h2 id="父元素上的属性"><a href="#父元素上的属性" class="headerlink" title="父元素上的属性"></a>父元素上的属性</h2><p><strong>方向：</strong><code>flex-direction: row | row-reverse | column | column-reverse</code></p>
+<div class="flexbox row"><div class="flexbox-item">row</div><div class="flexbox-item">row</div><div class="flexbox-item">row</div></div><br><div class="flexbox row-reverse"><div class="flexbox-item">row</div><div class="flexbox-item">-</div><div class="flexbox-item">reverse</div></div><br><div class="flexbox column"><div class="flexbox-item">c</div><div class="flexbox-item">o</div><div class="flexbox-item">l</div><div class="flexbox-item">u</div><div class="flexbox-item">m</div><div class="flexbox-item">n</div></div><br><div class="flexbox column-reverse"><div class="flexbox-item">c</div><div class="flexbox-item">o</div><div class="flexbox-item">l</div><div class="flexbox-item">u</div><div class="flexbox-item">m</div><div class="flexbox-item">n</div><div class="flexbox-item">-</div><div class="flexbox-item">reverse</div></div>
+
+<p><strong>换行：</strong><code>flex-wrap: nowrap | wrap | wrap-reverse</code></p>
+<div class="flexbox nowrap"><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div><div class="flexbox-item">nowrap</div></div><br><div class="flexbox wrap"><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div><div class="flexbox-item">wrap</div></div><br><div class="flexbox wrap-reverse"><div class="flexbox-item">1</div><div class="flexbox-item">wrapr-reverse</div><div class="flexbox-item">2</div><div class="flexbox-item">wrapr-reverse</div><div class="flexbox-item">3</div><div class="flexbox-item">wrapr-reverse</div><div class="flexbox-item">4</div><div class="flexbox-item">wrapr-reverse</div><div class="flexbox-item">5</div><div class="flexbox-item">wrapr-reverse</div><div class="flexbox-item">6</div><div class="flexbox-item">wrapr-reverse</div></div>
+
+<p><strong>方向 &amp; 换行：</strong><code>flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;</code></p>
+<p><strong>主轴对齐：</strong><code>justify-content: flex-start | flex-end | center | space-between | space-around</code></p>
+<div class="flexbox flex-start"><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div></div><br><div class="flexbox flex-end"><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><iv class="flexbox-item">flex-end</iv></div><br><div class="flexbox flex-center"><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div></div><br><div class="flexbox space-between"><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div></div><br><div class="flexbox space-around"><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div></div>
+
+<p><strong>侧轴对齐：</strong><code>align-items: stretch | flex-start | flex-end | center | baseline</code></p>
+<div class="flexbox align align-items-stretch"><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div></div><br><div class="flexbox align align-items-start"><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div></div><br><div class="flexbox align align-items-end"><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div></div><br><div class="flexbox align align-items-center"><div class="flexbox-item">center</div><div class="flexbox-item">center</div></div><br><div class="flexbox align align-items-baseline"><div class="flexbox-item" style="line-height: 60px;">line-heigth: 60px;</div><div class="flexbox-item">baseline</div></div>
+
+<p><strong>堆栈伸缩行：</strong><code>align-content: stretch | flex-start | flex-end | center | space-between | space-around</code></p>
+<div class="flexbox wrap align-content align-content-stretch"><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div><div class="flexbox-item">stretch</div></div><br><div class="flexbox wrap align-content align-content-start"><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div><div class="flexbox-item">flex-start</div></div><br><div class="flexbox wrap align-content align align-content-end"><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div><div class="flexbox-item">flex-end</div></div><br><div class="flexbox wrap align-content align-content-center"><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div><div class="flexbox-item">center</div></div><br><div class="flexbox wrap align-content align-content-between"><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div><div class="flexbox-item">space-between</div></div><br><div class="flexbox wrap align-content align-content-around"><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div><div class="flexbox-item">space-around</div></div>
+
+<h2 id="子元素上的属性"><a href="#子元素上的属性" class="headerlink" title="子元素上的属性"></a>子元素上的属性</h2><p><strong>显示顺序：</strong><code>order: &lt;Integer&gt;</code></p>
+<div class="flexbox wrap"><div class="flexbox-item" style="order: 0;">A -&gt; order: 0</div><div class="flexbox-item" style="order: 2;">B -&gt; order: 2</div><div class="flexbox-item" style="order: -1;">C -&gt; order: -1</div><div class="flexbox-item" style="order: 4;">D -&gt; order: 4</div></div>
+
+<p><code>flex-basis: &lt;Length&gt; | auto</code><br>定义了在分配多余空间之前，伸缩元素占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间<br>需要配合 <code>flex-grow</code> <code>flex-shrink</code> 使用，设置 <code>flex-basis</code> 后，伸缩元素的 <code>width</code> 和 <code>height</code> 属性将会失效</p>
+<p><strong>放大比例：</strong><code>flex-grow: &lt;Number&gt;</code></p>
+<div class="flexbox grow"><div class="flexbox-item" style="flex-grow: 0;">flex-grow: 0;</div><div class="flexbox-item" style="flex-grow: 1;">flex-grow: 1;</div><div class="flexbox-item" style="flex-grow: 2;">flex-grow: 2;</div></div>
+
+<p><strong>收缩比例：</strong><code>flex-shrink: &lt;Number&gt;</code></p>
+<div class="flexbox align"><div class="flexbox-item" style="flex-basis: 60%; flex-shrink: 0;">flex-basis: 60%; flex-shrink: 0;</div><div class="flexbox-item" style="flex-shrink: 1;">flex-shrink: 1;</div><div class="flexbox-item" style="flex-shrink: 0;">flex-shrink: 0;</div></div>
+
+<p><strong>收放比例：</strong><code>flex: &lt;flex-grow&gt; || &lt;flex-shrink&gt; || &lt;flex-basis&gt;</code></p>
+<p>默认值为：<code>flex: 0 1 auto</code></p>
+<p><strong>子元素对齐：</strong><code>align-self: auto | stretch | flex-start | flex-end | center | baseline</code></p>
+<div class="flexbox align align-content"><div class="flexbox-item" style="align-self: auto;">auto</div><div class="flexbox-item" style="align-self: stretch;">stretch</div><div class="flexbox-item" style="align-self: flex-start;">flex-start</div><div class="flexbox-item" style="align-self: flex-end;">flex-end</div><div class="flexbox-item" style="align-self: center;">center</div><div class="flexbox-item" style="align-self: baseline;">baseline</div></div>
+
+<p>参考连接：<br><a href="https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties" target="_blank" rel="noopener">A Visual Guide to CSS3 Flexbox Properties</a></p>
+<style type="text/css">
+.flexbox {
+    display: flex;
+    background: #ffd550;
+    padding: 10px;
+}
+.flexbox.align {
+    height: 96px;
+}
+.row-reverse {
+    flex-direction: row-reverse;
+}
+.column {
+    flex-direction: column;
+}
+.column-reverse {
+    flex-direction: column-reverse;
+}
+.nowrap {
+    flex-wrap: nowrap;
+}
+.wrap {
+    flex-wrap: wrap;
+}
+.wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+.flex-start {
+    justify-content: flex-start;
+}
+.flex-end {
+    justify-content: flex-end;
+}
+.flex-center {
+    justify-content: center;
+}
+.space-between {
+    justify-content: space-between;
+}
+.space-around {
+    justify-content: space-around;
+}
+.align-items-stretch {
+    align-items: stretch;
+}
+.align-items-start {
+    align-items: flex-start;
+}
+.align-items-end {
+    align-items: flex-end;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-baseline {
+    align-items: baseline;
+    line-height: 48px;
+}
+.align-content-stretch {
+    align-content: stretch;
+}
+.align-content-start {
+    align-content: flex-start;
+}
+.align-content-end {
+    align-content: flex-end;
+}
+.align-content-center {
+    align-content: center;
+}
+.align-content-between {
+    align-content: space-between;
+}
+.align-content-around {
+    align-content: space-around;
+}
+.flexbox-item {
+    width: auto;
+    height: 30px;
+    margin: 5px;
+    padding: 0 10px;
+    color: #595d93;
+    background: #fff;
+    border-radius: 4px;
+    border: 2px solid #595d93;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+}
+.flexbox.align .flexbox-item {
+    height: auto;
+}
+.flexbox.align-content {
+    height: 160px;
+    line-height: 50px;
+}
+</style>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+            <a href="/tags/flex/" rel="tag"># flex</a>
+          
+            <a href="/tags/布局/" rel="tag"># 布局</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/18/Tool/Next-js-集成-Style-loader/" rel="next" title="Next.js 集成 Style-Loader">
+                <i class="fa fa-chevron-left"></i> Next.js 集成 Style-Loader
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="铭铭GE" />
+          <p class="site-author-name" itemprop="name">铭铭GE</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ChristinaMcQueen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2673389771?refer_flag=1001030102_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS-中的布局模式"><span class="nav-number">1.</span> <span class="nav-text">CSS 中的布局模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新版本-Flexbox-的基本使用"><span class="nav-number">2.</span> <span class="nav-text">新版本 Flexbox 的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flexbox-容器"><span class="nav-number">2.1.</span> <span class="nav-text">Flexbox 容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flexbox-相关属性"><span class="nav-number">3.</span> <span class="nav-text">Flexbox 相关属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#父元素上的属性"><span class="nav-number">3.1.</span> <span class="nav-text">父元素上的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子元素上的属性"><span class="nav-number">3.2.</span> <span class="nav-text">子元素上的属性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">铭铭GE</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+<!-- 访客统计 -->
+<div>
+  <!-- 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次,
+  访客数 <span id="busuanzi_value_site_uv"></span> 人次, -->
+  本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <!--a href="https://github.com/ChristinaMcQueen"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a-->
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>
