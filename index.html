@@ -263,6 +263,274 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2018/07/24/意料之外的-Javascript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/24/意料之外的-Javascript/" itemprop="url">意料之外的 Javascript</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T16:41:24+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2018/05/24/数组总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/数组总结/" itemprop="url">容易混淆的数组方法总结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T20:04:35+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Javascript 中的数组实际上是对象的一个子类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span> <span class="keyword">instanceof</span> <span class="built_in">Array</span>  <span class="comment">// true</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h1 id="Array-prototype-slice-VS-Array-prototype-splice"><a href="#Array-prototype-slice-VS-Array-prototype-splice" class="headerlink" title="Array.prototype.slice() VS Array.prototype.splice()"></a>Array.prototype.slice() VS Array.prototype.splice()</h1><table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方法</strong></th>
+<th style="text-align:center"><strong>Array.prototype.slice()</strong></th>
+<th style="text-align:center"><strong>Array.prototype.splice()</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>参数</strong></td>
+<td style="text-align:center">start[, end]</td>
+<td style="text-align:center">start[, deleteCount[, item1[, item2[, …]]]]</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>return</strong></td>
+<td style="text-align:center">一个含有提取元素的新数组「包含 start，但不包含 end」</td>
+<td style="text-align:center">由被删除的元素组成的数组</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>对原数组影响</strong></td>
+<td style="text-align:center">无影响</td>
+<td style="text-align:center">有影响</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>描述</strong></td>
+<td style="text-align:center">抽取当前数组中的一段元素组合成一个新数组「浅拷贝」</td>
+<td style="text-align:center">在任意的位置给数组添加或删除任意个元素</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Array-prototype-slice-语法"><a href="#Array-prototype-slice-语法" class="headerlink" title="Array.prototype.slice() 语法"></a>Array.prototype.slice() 语法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array.slice();</span><br><span class="line"><span class="comment">// [0, end] -&gt; 可用来实现数组⚠️浅拷贝⚠️</span></span><br><span class="line"></span><br><span class="line">array.slice(start);</span><br><span class="line"><span class="comment">// [start, end]</span></span><br><span class="line"></span><br><span class="line">array.slice(start, end);</span><br><span class="line"><span class="comment">// [start, end) -&gt; 包含 start，但不包含 end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Array-prototype-splice-语法"><a href="#Array-prototype-splice-语法" class="headerlink" title="Array.prototype.splice() 语法"></a>Array.prototype.splice() 语法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array.splice(start);</span><br><span class="line"><span class="comment">// 从 start 位置开始删除 [start, end] 的元素</span></span><br><span class="line"></span><br><span class="line">array.splice(start, deleteCount);</span><br><span class="line"><span class="comment">// 从 start 位置开始删除 [start, Count] 的元素</span></span><br><span class="line"></span><br><span class="line">array.splice(start, <span class="number">0</span>, item1, item2, ...);</span><br><span class="line"><span class="comment">// 从 start 位置开始添加 item1, item2, ... 元素</span></span><br></pre></td></tr></table></figure>
+<h1 id="Array-VS-Array-of-VS-Array-from"><a href="#Array-VS-Array-of-VS-Array-from" class="headerlink" title="Array() VS Array.of() VS Array.from()"></a>Array() VS Array.of() VS Array.from()</h1><ul>
+<li>Array(): Array 构造器</li>
+<li>Array.of(): 创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型</li>
+<li>Array.from(): 从一个类似数组或可迭代对象中创建一个新的数组实例</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(<span class="number">7</span>);          <span class="comment">// [ , , , , , , ]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);    <span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">7</span>);       <span class="comment">// [7]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h1 id="对象数组排序"><a href="#对象数组排序" class="headerlink" title="对象数组排序"></a>对象数组排序</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compare = <span class="function"><span class="params">key</span> =&gt;</span> (a, b) =&gt; a[key] - b[key];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [</span><br><span class="line">    &#123; <span class="attr">key</span>: <span class="number">2</span>, <span class="attr">value</span>: <span class="string">'b'</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">key</span>: <span class="number">3</span>, <span class="attr">value</span>: <span class="string">'c'</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">key</span>: <span class="number">1</span>, <span class="attr">value</span>: <span class="string">'a'</span> &#125;</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.log(array.sort(compare(<span class="string">'key'</span>)));</span><br><span class="line"><span class="comment">// [&#123; key: 1, value: 'a' &#125;, &#123; key: 2, value: 'b' &#125;, &#123; key: 3, value: 'c' &#125;]</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/24/数组总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2018/04/29/CSS相关/关于-Flexbox-的若干问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1077,17 +1345,23 @@
         
           
             <h1 id="Update-to-Webpack-4"><a href="#Update-to-Webpack-4" class="headerlink" title="Update to Webpack 4"></a>Update to Webpack 4</h1><p><code>yarn upgrade webpack</code></p>
+<p>同时升级相关 loader 依赖</p>
+<h1 id="（or）Install-Webpack-4"><a href="#（or）Install-Webpack-4" class="headerlink" title="（or）Install Webpack 4"></a>（or）Install Webpack 4</h1><p><code>yarn add webpack webapck-dev-server webpack-merge webpack -cli</code></p>
 <h1 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h1><p>启动后，启动信息会有 4 个 Warning 提示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">configuration</span><br><span class="line">The <span class="string">'mode'</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">'production'</span> <span class="keyword">for</span> this value. Set <span class="string">'mode'</span> option to <span class="string">'development'</span> or <span class="string">'production'</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asset size <span class="built_in">limit</span>: The following asset(s) exceed the recommended size <span class="built_in">limit</span> (244 KiB).</span><br><span class="line">This can impact web performance.</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">entrypoint size <span class="built_in">limit</span>: The following entrypoint(s) combined asset size exceeds the recommended <span class="built_in">limit</span> (244 KiB). This can impact web performance.</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webpack performance recommendations:</span><br><span class="line">You can <span class="built_in">limit</span> the size of your bundles by using import() or require.ensure to lazy load some parts of your application.</span><br></pre></td></tr></table></figure>
-<h1 id="解决方法：在配置中添加-mode-属性："><a href="#解决方法：在配置中添加-mode-属性：" class="headerlink" title="解决方法：在配置中添加 mode 属性："></a>解决方法：在配置中添加 <code>mode</code> 属性：</h1><p>开发环境：</p>
+<h1 id="解决方法：在配置中添加-mode-属性："><a href="#解决方法：在配置中添加-mode-属性：" class="headerlink" title="解决方法：在配置中添加 mode 属性："></a>解决方法：在配置中添加 <code>mode</code> 属性：</h1><p>开发环境</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: 'development'</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>生产环境</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: 'production'</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: process.env.NODE_ENV</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="重新启动项目，警告消失"><a href="#重新启动项目，警告消失" class="headerlink" title="重新启动项目，警告消失"></a>重新启动项目，警告消失</h1><p>目测启动速度更快，暂未做相关测试</p>
-<p>待续</p>
+<h1 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h1><p>webpack 4 移除 CommonsChunkPlugin 插件</p>
+<p>通过配置 ptimization 可实现 CommonsChunkPlugin 功能，同时，vendor 不需要配置，同样可以在 ptimization 中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ptimization: &#123;</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">        chunks: &apos;all</span><br><span class="line">    &#125;,</span><br><span class="line">    runtimeChunk: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1239,238 +1513,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/10/27/Tool/Docker-部署-Node-js-应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="铭铭GE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of 铭铭GE's">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/27/Tool/Docker-部署-Node-js-应用/" itemprop="url">Docker 部署 Node.js 应用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T14:46:28+08:00">
-                2017-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="创建-Dockerfile"><a href="#创建-Dockerfile" class="headerlink" title="创建 Dockerfile"></a>创建 Dockerfile</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置基础镜像,如果本地没有该镜像，会从Docker.io服务器pull镜像</span></span><br><span class="line"><span class="string">FROM</span> <span class="string">node</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建app目录,保存我们的代码</span></span><br><span class="line"><span class="string">RUN</span> <span class="string">mkdir</span> <span class="bullet">-p</span> <span class="string">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line"><span class="string">WORKDIR</span> <span class="string">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制所有文件到 工作目录。</span></span><br><span class="line"><span class="string">COPY</span> <span class="string">.</span> <span class="string">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译运行node项目，使用npm安装程序的所有依赖,利用taobao的npm安装，可省略</span></span><br><span class="line"><span class="string">RUN</span> <span class="string">npm</span> <span class="string">install</span> <span class="bullet">--registry=https://registry.npm.taobao.org</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露container的端口</span></span><br><span class="line"><span class="string">EXPOSE</span> <span class="number">8888</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行命令</span></span><br><span class="line"><span class="string">CMD</span> <span class="string">["npm",</span> <span class="string">"start"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
-<h1 id="构建-Image"><a href="#构建-Image" class="headerlink" title="构建 Image"></a>构建 Image</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">image_name</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
-<h1 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="bullet">-d</span> <span class="bullet">--name</span> <span class="string">container_name</span> <span class="bullet">-p</span> <span class="number">8888</span><span class="string">:8888</span> <span class="attr">image_name:latest</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/10/25/CSS相关/现代方法论/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="铭铭GE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of 铭铭GE's">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/CSS相关/现代方法论/" itemprop="url">CSS 现代方法论</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:55:18+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CSS-in-JS"><a href="#CSS-in-JS" class="headerlink" title="CSS in JS"></a>CSS in JS</h1><h2 id="解决了"><a href="#解决了" class="headerlink" title="解决了"></a>解决了</h2><ul class="feature-positive"><li>全局命名空间，每一条样式都可能被覆盖或重定义（CSS4-scope 属性）</li><li>难以管理依赖关系</li><li>难经消除死代码，在实际运行之前，无法确定特定的 CSS 是否起会用到</li><li>难以共享变量，特别是 CSS 与 JS 之间</li><li>难以压缩，minify 效果有限</li><li>非确定性的样式（异步载入 CSS 文件的顺序可能影响最终样式呈现）</li><li>难以隔离组件（除 shadow-dom 和 scope 属性外）</li><li>复杂混乱的选择器优先级运算</li><li>不支持抽象与复用</li></ul>
-
-<h2 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h2><ul class="feature-negative"><li>绝大部分只适用于 React 生态</li><li>不能使用 Less/Scss/Stylus 等预处理器</li><li>不能使用 postcss</li><li>实现五花八门，没有标准</li><li>不能解决所有问题，比如 animation、css reset 等等</li><li>代码混乱，历史的倒车</li><li>有些实现可能会不尽如人意，如伪类、媒体查询等等</li><li>难以修改样式</li><li>组件库样式难以跨项目共用</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/CSS相关/现代方法论/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1521,7 +1563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1534,7 +1576,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
