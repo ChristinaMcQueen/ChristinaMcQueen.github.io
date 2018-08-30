@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://christinamcqueen.github.io/2018/04/29/CSS%E7%9B%B8%E5%85%B3/%E5%85%B3%E4%BA%8E-Flexbox-%E7%9A%84%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-08-30T13:37:33.282Z</lastmod>
+    <data>
+        <display>
+        <title>关于 Flexbox 的若干问题</title>
+        <pubTime>2018-04-29T03:59:34.000Z</pubTime>
+        
+        <tag>CSS3</tag>
+         
+        <tag>flex</tag>
+         
+        <tag>布局</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://christinamcqueen.github.io/2018/03/08/Tool/Webpack-4-%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2018-08-30T13:31:05.900Z</lastmod>
     <data>
@@ -16,27 +37,6 @@
         <tag>Webpack 4</tag>
          
         <tag>mode</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://christinamcqueen.github.io/2018/04/29/CSS%E7%9B%B8%E5%85%B3/%E5%85%B3%E4%BA%8E-Flexbox-%E7%9A%84%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-08-30T13:28:56.191Z</lastmod>
-    <data>
-        <display>
-        <title>关于 Flexbox 的若干问题</title>
-        <pubTime>2018-04-29T03:59:34.000Z</pubTime>
-        
-        <tag>CSS3</tag>
-         
-        <tag>flex</tag>
-         
-        <tag>布局</tag>
          
          
            
@@ -139,6 +139,23 @@
 
     
   <url>
+    <loc>https://christinamcqueen.github.io/2017/10/05/HTML5/%E5%85%83%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0/</loc>
+    <lastmod>2018-05-11T02:04:12.267Z</lastmod>
+    <data>
+        <display>
+        <title>元数据元素</title>
+        <pubTime>2017-10-05T05:28:18.000Z</pubTime>
+        
+        <tag>HTML5</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://christinamcqueen.github.io/2017/10/03/HTML5/HTML5-%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7/</loc>
     <lastmod>2018-05-11T02:04:12.267Z</lastmod>
     <data>
@@ -156,14 +173,14 @@
 
     
   <url>
-    <loc>https://christinamcqueen.github.io/2017/10/05/HTML5/%E5%85%83%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0/</loc>
-    <lastmod>2018-05-11T02:04:12.267Z</lastmod>
+    <loc>https://christinamcqueen.github.io/2017/10/24/CSS%E7%9B%B8%E5%85%B3/%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/</loc>
+    <lastmod>2018-05-11T02:04:12.266Z</lastmod>
     <data>
         <display>
-        <title>元数据元素</title>
-        <pubTime>2017-10-05T05:28:18.000Z</pubTime>
+        <title>CSS 选择器的优先级</title>
+        <pubTime>2017-10-24T07:19:30.000Z</pubTime>
         
-        <tag>HTML5</tag>
+        <tag>CSS</tag>
          
          
            
@@ -196,23 +213,6 @@
         <display>
         <title>CSS 现代方法论</title>
         <pubTime>2017-10-25T02:55:18.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://christinamcqueen.github.io/2017/10/24/CSS%E7%9B%B8%E5%85%B3/%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/</loc>
-    <lastmod>2018-05-11T02:04:12.266Z</lastmod>
-    <data>
-        <display>
-        <title>CSS 选择器的优先级</title>
-        <pubTime>2017-10-24T07:19:30.000Z</pubTime>
         
         <tag>CSS</tag>
          
@@ -286,9 +286,9 @@
         <title>Next.js 集成 Style-Loader</title>
         <pubTime>2018-04-18T03:39:32.000Z</pubTime>
         
-        <tag>Next.js</tag>
-         
         <tag>Webpack</tag>
+         
+        <tag>Next.js</tag>
          
         <tag>style-loader</tag>
          
