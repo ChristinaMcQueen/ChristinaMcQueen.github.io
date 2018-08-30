@@ -99,18 +99,18 @@
 
 
 
-<meta name="description" content="Update to Webpack 4yarn upgrade webpack 同时升级相关 loader 依赖 （or）Install Webpack 4yarn add webpack webapck-dev-server webpack-merge webpack -cli 启动项目启动后，启动信息会有 4 个 Warning 提示： 12configurationThe &apos;mode&apos; op">
+<meta name="description" content="Update to Webpack 4yarn upgrade webpack 同时升级相关 loader 依赖 （or）Install Webpack 4yarn add webpack webapck-dev-server webpack-merge webpack -cli">
 <meta name="keywords" content="Webpack,Webpack 4,mode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack 4 踩坑指南">
 <meta property="og:url" content="https://christinamcqueen.github.io/2018/03/08/Tool/Webpack-4-踩坑指南/index.html">
 <meta property="og:site_name" content="Blog of 铭铭GE&#39;s">
-<meta property="og:description" content="Update to Webpack 4yarn upgrade webpack 同时升级相关 loader 依赖 （or）Install Webpack 4yarn add webpack webapck-dev-server webpack-merge webpack -cli 启动项目启动后，启动信息会有 4 个 Warning 提示： 12configurationThe &apos;mode&apos; op">
+<meta property="og:description" content="Update to Webpack 4yarn upgrade webpack 同时升级相关 loader 依赖 （or）Install Webpack 4yarn add webpack webapck-dev-server webpack-merge webpack -cli">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-07T14:17:34.345Z">
+<meta property="og:updated_time" content="2018-08-30T13:31:05.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack 4 踩坑指南">
-<meta name="twitter:description" content="Update to Webpack 4yarn upgrade webpack 同时升级相关 loader 依赖 （or）Install Webpack 4yarn add webpack webapck-dev-server webpack-merge webpack -cli 启动项目启动后，启动信息会有 4 个 Warning 提示： 12configurationThe &apos;mode&apos; op">
+<meta name="twitter:description" content="Update to Webpack 4yarn upgrade webpack 同时升级相关 loader 依赖 （or）Install Webpack 4yarn add webpack webapck-dev-server webpack-merge webpack -cli">
 
 
 
@@ -330,12 +330,14 @@
         <h1 id="Update-to-Webpack-4"><a href="#Update-to-Webpack-4" class="headerlink" title="Update to Webpack 4"></a>Update to Webpack 4</h1><p><code>yarn upgrade webpack</code></p>
 <p>同时升级相关 loader 依赖</p>
 <h1 id="（or）Install-Webpack-4"><a href="#（or）Install-Webpack-4" class="headerlink" title="（or）Install Webpack 4"></a>（or）Install Webpack 4</h1><p><code>yarn add webpack webapck-dev-server webpack-merge webpack -cli</code></p>
-<h1 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h1><p>启动后，启动信息会有 4 个 Warning 提示：</p>
+<a id="more"></a>
+<h1 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h1><p>对原配置未做修改情况下，启动项目，启动信息会有 4 个 Warning 提示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">configuration</span><br><span class="line">The <span class="string">'mode'</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">'production'</span> <span class="keyword">for</span> this value. Set <span class="string">'mode'</span> option to <span class="string">'development'</span> or <span class="string">'production'</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asset size <span class="built_in">limit</span>: The following asset(s) exceed the recommended size <span class="built_in">limit</span> (244 KiB).</span><br><span class="line">This can impact web performance.</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">entrypoint size <span class="built_in">limit</span>: The following entrypoint(s) combined asset size exceeds the recommended <span class="built_in">limit</span> (244 KiB). This can impact web performance.</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webpack performance recommendations:</span><br><span class="line">You can <span class="built_in">limit</span> the size of your bundles by using import() or require.ensure to lazy load some parts of your application.</span><br></pre></td></tr></table></figure>
-<h1 id="解决方法：在配置中添加-mode-属性："><a href="#解决方法：在配置中添加-mode-属性：" class="headerlink" title="解决方法：在配置中添加 mode 属性："></a>解决方法：在配置中添加 <code>mode</code> 属性：</h1><p>开发环境</p>
+<h1 id="解决方法：在配置中添加-mode-属性："><a href="#解决方法：在配置中添加-mode-属性：" class="headerlink" title="解决方法：在配置中添加 mode 属性："></a>解决方法：在配置中添加 <code>mode</code> 属性：</h1><p>webpack4 中需要配置<code>mode</code>参数</p>
+<p>开发环境</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: 'development'</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>生产环境</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: 'production'</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -489,7 +491,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

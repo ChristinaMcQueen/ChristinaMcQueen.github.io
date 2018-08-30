@@ -331,7 +331,8 @@
       
         
           
-            
+            <p>to be continued…</p>
+
           
         
       
@@ -1110,7 +1111,7 @@
 
       
         
-          <h1 id="防止-margin-重叠（塌陷）"><a href="#防止-margin-重叠（塌陷）" class="headerlink" title="防止 margin 重叠（塌陷）"></a>防止 margin 重叠（塌陷）</h1><h2 id="相邻-Box-垂直重叠"><a href="#相邻-Box-垂直重叠" class="headerlink" title="相邻 Box 垂直重叠"></a>相邻 Box 垂直重叠</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"vertical-wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>BOX 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>BOX 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">p &#123;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">    margin: 50px auto;</span></span><br><span class="line"><span class="undefined">    line-height: 50px;</span></span><br><span class="line"><span class="undefined">    text-align: center;</span></span><br><span class="line"><span class="undefined">    color: #b8d990;</span></span><br><span class="line"><span class="undefined">    background: #422468;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="防止-margin-重叠（塌陷）"><a href="#防止-margin-重叠（塌陷）" class="headerlink" title="防止 margin 重叠（塌陷）"></a>防止 margin 重叠（塌陷）</h1><h2 id="相邻-Box-垂直重叠"><a href="#相邻-Box-垂直重叠" class="headerlink" title="相邻 Box 垂直重叠"></a>相邻 Box 垂直重叠</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"vertical-wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>BOX 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>BOX 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/30/BFC/BFC-在布局中的应用/#more" rel="contents">
@@ -1343,27 +1344,16 @@
 
       
         
-          
-            <h1 id="Update-to-Webpack-4"><a href="#Update-to-Webpack-4" class="headerlink" title="Update to Webpack 4"></a>Update to Webpack 4</h1><p><code>yarn upgrade webpack</code></p>
+          <h1 id="Update-to-Webpack-4"><a href="#Update-to-Webpack-4" class="headerlink" title="Update to Webpack 4"></a>Update to Webpack 4</h1><p><code>yarn upgrade webpack</code></p>
 <p>同时升级相关 loader 依赖</p>
 <h1 id="（or）Install-Webpack-4"><a href="#（or）Install-Webpack-4" class="headerlink" title="（or）Install Webpack 4"></a>（or）Install Webpack 4</h1><p><code>yarn add webpack webapck-dev-server webpack-merge webpack -cli</code></p>
-<h1 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h1><p>启动后，启动信息会有 4 个 Warning 提示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">configuration</span><br><span class="line">The <span class="string">'mode'</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">'production'</span> <span class="keyword">for</span> this value. Set <span class="string">'mode'</span> option to <span class="string">'development'</span> or <span class="string">'production'</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asset size <span class="built_in">limit</span>: The following asset(s) exceed the recommended size <span class="built_in">limit</span> (244 KiB).</span><br><span class="line">This can impact web performance.</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">entrypoint size <span class="built_in">limit</span>: The following entrypoint(s) combined asset size exceeds the recommended <span class="built_in">limit</span> (244 KiB). This can impact web performance.</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webpack performance recommendations:</span><br><span class="line">You can <span class="built_in">limit</span> the size of your bundles by using import() or require.ensure to lazy load some parts of your application.</span><br></pre></td></tr></table></figure>
-<h1 id="解决方法：在配置中添加-mode-属性："><a href="#解决方法：在配置中添加-mode-属性：" class="headerlink" title="解决方法：在配置中添加 mode 属性："></a>解决方法：在配置中添加 <code>mode</code> 属性：</h1><p>开发环境</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: 'development'</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>生产环境</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: 'production'</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: process.env.NODE_ENV</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="重新启动项目，警告消失"><a href="#重新启动项目，警告消失" class="headerlink" title="重新启动项目，警告消失"></a>重新启动项目，警告消失</h1><p>目测启动速度更快，暂未做相关测试</p>
-<h1 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h1><p>webpack 4 移除 CommonsChunkPlugin 插件</p>
-<p>通过配置 ptimization 可实现 CommonsChunkPlugin 功能，同时，vendor 不需要配置，同样可以在 ptimization 中配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ptimization: &#123;</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">        chunks: &apos;all</span><br><span class="line">    &#125;,</span><br><span class="line">    runtimeChunk: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/08/Tool/Webpack-4-踩坑指南/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1576,7 +1566,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
