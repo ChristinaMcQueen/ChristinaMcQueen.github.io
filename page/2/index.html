@@ -263,120 +263,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/10/27/Tool/Docker-部署-Node-js-应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="铭铭GE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of 铭铭GE's">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/27/Tool/Docker-部署-Node-js-应用/" itemprop="url">Docker 部署 Node.js 应用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T14:46:28+08:00">
-                2017-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="创建-Dockerfile"><a href="#创建-Dockerfile" class="headerlink" title="创建 Dockerfile"></a>创建 Dockerfile</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置基础镜像,如果本地没有该镜像，会从Docker.io服务器pull镜像</span></span><br><span class="line"><span class="string">FROM</span> <span class="string">node</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建app目录,保存我们的代码</span></span><br><span class="line"><span class="string">RUN</span> <span class="string">mkdir</span> <span class="bullet">-p</span> <span class="string">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line"><span class="string">WORKDIR</span> <span class="string">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制所有文件到 工作目录。</span></span><br><span class="line"><span class="string">COPY</span> <span class="string">.</span> <span class="string">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译运行node项目，使用npm安装程序的所有依赖,利用taobao的npm安装，可省略</span></span><br><span class="line"><span class="string">RUN</span> <span class="string">npm</span> <span class="string">install</span> <span class="bullet">--registry=https://registry.npm.taobao.org</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露container的端口</span></span><br><span class="line"><span class="string">EXPOSE</span> <span class="number">8888</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行命令</span></span><br><span class="line"><span class="string">CMD</span> <span class="string">["npm",</span> <span class="string">"start"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
-<h1 id="构建-Image"><a href="#构建-Image" class="headerlink" title="构建 Image"></a>构建 Image</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">image_name</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
-<h1 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="bullet">-d</span> <span class="bullet">--name</span> <span class="string">container_name</span> <span class="bullet">-p</span> <span class="number">8888</span><span class="string">:8888</span> <span class="attr">image_name:latest</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/10/25/CSS相关/现代方法论/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1611,6 +1497,128 @@ testBtn.onclick = function(e) {
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://christinamcqueen.github.io/2017/08/16/缓存/离线缓存-AppCache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="铭铭GE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of 铭铭GE's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/16/缓存/离线缓存-AppCache/" itemprop="url">离线缓存 AppCache</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T14:20:43+08:00">
+                2017-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="什么是应用程序缓存（Application-Cache）"><a href="#什么是应用程序缓存（Application-Cache）" class="headerlink" title="什么是应用程序缓存（Application Cache）?"></a>什么是应用程序缓存（Application Cache）?</h1><p>HTML5 提供一种应用程序缓存机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器应该缓存的资源并使得离线用户可用。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。</p>
+<p><strong>优势</strong></p>
+<ul>
+<li>离线浏览: 用户可以在离线状态下浏览网站内容。</li>
+<li>更快的速度: 因为数据被存储在本地，所以速度会更快。</li>
+<li>减轻服务器的负载: 浏览器只会下载在服务器上发生改变的资源。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/16/缓存/离线缓存-AppCache/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1661,7 +1669,7 @@ testBtn.onclick = function(e) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1674,7 +1682,7 @@ testBtn.onclick = function(e) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

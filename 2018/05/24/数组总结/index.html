@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Blog of 铭铭GE&#39;s">
 <meta property="og:description" content="Javascript 中的数组实际上是对象的一个子类型 12new Array instanceof Array  // truenew Array instanceof Object // true Array.prototype.slice() VS Array.prototype.splice()   方法 Array.prototype.slice() Array.prototype.sp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-25T09:09:58.229Z">
+<meta property="og:updated_time" content="2018-09-16T05:06:35.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="容易混淆的数组方法总结">
 <meta name="twitter:description" content="Javascript 中的数组实际上是对象的一个子类型 12new Array instanceof Array  // truenew Array instanceof Object // true Array.prototype.slice() VS Array.prototype.splice()   方法 Array.prototype.slice() Array.prototype.sp">
@@ -362,14 +362,14 @@
 </table>
 <h2 id="Array-prototype-slice-语法"><a href="#Array-prototype-slice-语法" class="headerlink" title="Array.prototype.slice() 语法"></a>Array.prototype.slice() 语法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array.slice();</span><br><span class="line"><span class="comment">// [0, end] -&gt; 可用来实现数组⚠️浅拷贝⚠️</span></span><br><span class="line"></span><br><span class="line">array.slice(start);</span><br><span class="line"><span class="comment">// [start, end]</span></span><br><span class="line"></span><br><span class="line">array.slice(start, end);</span><br><span class="line"><span class="comment">// [start, end) -&gt; 包含 start，但不包含 end</span></span><br></pre></td></tr></table></figure>
 <h2 id="Array-prototype-splice-语法"><a href="#Array-prototype-splice-语法" class="headerlink" title="Array.prototype.splice() 语法"></a>Array.prototype.splice() 语法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array.splice(start);</span><br><span class="line"><span class="comment">// 从 start 位置开始删除 [start, end] 的元素</span></span><br><span class="line"></span><br><span class="line">array.splice(start, deleteCount);</span><br><span class="line"><span class="comment">// 从 start 位置开始删除 [start, Count] 的元素</span></span><br><span class="line"></span><br><span class="line">array.splice(start, <span class="number">0</span>, item1, item2, ...);</span><br><span class="line"><span class="comment">// 从 start 位置开始添加 item1, item2, ... 元素</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h1 id="Array-VS-Array-of-VS-Array-from"><a href="#Array-VS-Array-of-VS-Array-from" class="headerlink" title="Array() VS Array.of() VS Array.from()"></a>Array() VS Array.of() VS Array.from()</h1><ul>
 <li>Array(): Array 构造器</li>
 <li>Array.of(): 创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型</li>
 <li>Array.from(): 从一个类似数组或可迭代对象中创建一个新的数组实例</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(<span class="number">7</span>);          <span class="comment">// [ , , , , , , ]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);    <span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">7</span>);       <span class="comment">// [7]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(<span class="number">7</span>);          <span class="comment">// [ , , , , , , ]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);    <span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">7</span>);       <span class="comment">// [7]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(<span class="number">7</span>);              <span class="comment">// []</span></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">7</span> &#125;);  <span class="comment">// [undefined, undefined, undefined, undefined, undefined, undefined, undefined]</span></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">7</span> &#125;, (k, v) =&gt; v); <span class="comment">// [0, 1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
 <h1 id="对象数组排序"><a href="#对象数组排序" class="headerlink" title="对象数组排序"></a>对象数组排序</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compare = <span class="function"><span class="params">key</span> =&gt;</span> (a, b) =&gt; a[key] - b[key];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [</span><br><span class="line">    &#123; <span class="attr">key</span>: <span class="number">2</span>, <span class="attr">value</span>: <span class="string">'b'</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">key</span>: <span class="number">3</span>, <span class="attr">value</span>: <span class="string">'c'</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">key</span>: <span class="number">1</span>, <span class="attr">value</span>: <span class="string">'a'</span> &#125;</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.log(array.sort(compare(<span class="string">'key'</span>)));</span><br><span class="line"><span class="comment">// [&#123; key: 1, value: 'a' &#125;, &#123; key: 2, value: 'b' &#125;, &#123; key: 3, value: 'c' &#125;]</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <table>
 <thead>
 <tr>
@@ -464,10 +464,6 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/24/意料之外的-Javascript/" rel="prev" title="意料之外的 Javascript">
-                意料之外的 Javascript <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -539,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -552,7 +548,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
